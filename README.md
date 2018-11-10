@@ -1,7 +1,7 @@
 Ramda
 =============
 
-Практическая функциональная библиотека для JavaScript программистов.
+Практичная функциональная библиотека для JavaScript программистов.
 
 [![Build Status](https://travis-ci.org/ramda/ramda.svg?branch=master)](https://travis-ci.org/ramda/ramda)
 [![npm module](https://badge.fury.io/js/ramda.svg)](https://www.npmjs.org/package/ramda)
