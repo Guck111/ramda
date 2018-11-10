@@ -161,8 +161,8 @@ const R = require('ramda');
 Переводы
 -----------------
 
-- [Англійською(English)](https://github.com/ramda/ramda)
-- [Китайською(中文)](http://ramda.cn/)
+- [Английский(English)](https://github.com/ramda/ramda)
+- [Китайский(中文)](http://ramda.cn/)
 - [Украинский(Українська)](https://github.com/ivanzusko/ramda/)
 
 
