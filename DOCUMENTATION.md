@@ -36,7 +36,15 @@
 - [chain](#chain) `List`
 - [clamp](#clamp) `Relation`
 - [clone](#clone) `Object`
+- [comparator](#comparator) `Function`
 - [compose](#compose) `Function`
+- [composeK](#composeK) `Function`
+- [composeP](#composeP) `Function`
+- [concat](#concat) `List`
+- [cond](#cond) `Logic`
+- [construct](#construct) `Function`
+- [constructN](#constructN) `Function`
+- [contains](#contains) `List`
 - [converge](#converge) `Function`
 
 **[⬆ вверх](#Документация)**
@@ -180,7 +188,7 @@ _Добавлено в версии v0.1.0_
 
 Добавляет два значения
 
-Смотрите также [subtract](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#subtract).
+Смотрите также [subtract](#subtract).
 
 ```javascript
 R.add(2, 3);       //=>  5
@@ -236,7 +244,7 @@ _Добавлено в версии v0.14.0_
 
 Применяет функцию к указанному индексом элемента в массиве, возвращая новую копию массива с элементом, на указанном индксом месте, замененным результатом примененной функции.
 
-Смотрите также [update](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#update).
+Смотрите также [update](#update).
 
 ```javascript
 R.adjust(R.add(10), 1, [1, 2, 3]);     //=> [1, 12, 3]
@@ -268,7 +276,7 @@ _Добавлено в версии v0.1.0_
 
 Действует как преобразователь (трансдюсер), если трансформер указан на месте списка.
 
-Смотрите также [any](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#any), [none](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#none), [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce).
+Смотрите также [any](#any), [none](#none), [transduce](#transduce).
 
 ```javascript
 var equals3 = R.equals(3);
@@ -298,7 +306,7 @@ _Добавлено в версии v0.9.0_
 
 Возвращенная функция является каррированной, чья арность совпадает с арностью предиката с высочайшей арностью.
 
-Смотрите также [anyPass](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#anypass)
+Смотрите также [anyPass](#anypass)
 
 ```javascript
 var isQueen = R.propEq('rank', 'Q');
@@ -357,7 +365,7 @@ _Добавлено в версии v0.1.0_
 
 Возвращает `true`, если оба аргумента истинны, в противном случае - `false`.
 
-Смотрите также [both](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#both).
+Смотрите также [both](#both).
 
 ```javascript
 R.and(true, true); //=> true
@@ -391,7 +399,7 @@ _Добавлено в версии v0.1.0_
 
 Действует как преобразователь (трансдюсер), если трансформер указан на месте списка.
 
-Смотрите также [all](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#all), [none](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#none), [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce).
+Смотрите также [all](#all), [none](#none), [transduce](#transduce).
 
 ```javascript
 var lessThan0 = R.flip(R.lt)(0);
@@ -422,7 +430,7 @@ _Добавлено в версии v0.9.0_
 
 Возвращенная Функция является каррированной, чья арность совпадает с арностью предиката с высочайшей арностью.
 
-Смотрите также [allPass](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#allpass)
+Смотрите также [allPass](#allpass)
 
 ```javascript
 var isClub = R.propEq('suit', '♣');
@@ -487,7 +495,7 @@ _Добавлено в версии v0.12.0_
 
 Действует как преобразователь(transducer), если трансформер(transformer) передан на месте списка.
 
-Смотрите также [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce).
+Смотрите также [transduce](#transduce).
 
 ```javascript
 R.aperture(2, [1, 2, 3, 4, 5]); //=> [[1, 2], [2, 3], [3, 4], [4, 5]]
@@ -516,7 +524,7 @@ _Добавлено в версии v0.1.0_
 
 вернет новый список, в котором находятся элементы переданные в качестве параметра `list`, и в конце элемент переданный в качестве аргумента `el`.
 
-Смотрите также [prepend](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#prepend).
+Смотрите также [prepend](#prepend).
 
 ```javascript
 R.append('tests', ['write', 'more']); //=> ['write', 'more', 'tests']
@@ -545,7 +553,7 @@ _Добавлено в версии v0.7.0_
 
 Применяет функцию `fn` к списку аргументов `args`. Это полезно для создания функций фиксированной арности из функции с переменным числом аргументов. `fn` должна быть привязанной (bind) функцией, в случае если контекст важен.
 
-Смотрите также [call](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#call), [unapply](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#unapply).
+Смотрите также [call](#call), [unapply](#unapply).
 
 ```javascript
 var nums = [1, 2, 3, -99, 42, 6, 7];
@@ -571,7 +579,7 @@ _Добавлено в версии v0.20.0_
 
 Учитывая, что объект `spec` рекурсивно сопоставляет свойства функции, создается Функция, которая создает объект с такой же структурой, путем сопоставления каждого свойства с результатом вызова связанной с ним функции с передаваемыми аргументами.
 
-Смотрите также [converge](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#converge), [juxt](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#juxt).
+Смотрите также [converge](#converge), [juxt](#juxt).
 
 ```javascript
 var getMetrics = R.applySpec({
@@ -603,7 +611,7 @@ _Добавлено в версии v0.23.0_
 
 Создает восходящую функцию сравнения, которая вернет значение которое может быть сравнимо с помощью `<` и `>`.
 
-Смотрите также [descend](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#descend).
+Смотрите также [descend](#descend).
 
 ```javascript
 var byAge = R.ascend(R.prop('age'));
@@ -634,7 +642,7 @@ var peopleByYoungestFirst = R.sort(byAge, people);
 _Добавлено в версии v0.8.0_
 
 Создает поверхностную копию объекта, устанавливая или переопределяя указанное свойство заданным значением. Обратите внимание, что это создаст новый объект. Все свойства, не являющиеся примитивами, копируются по ссылке.
-Смотрите также [dissoc](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#dissoc).
+Смотрите также [dissoc](#dissoc).
 
 ```javascript
 R.assoc('c', 3, {a: 1, b: 2}); //=> {a: 1, b: 2, c: 3}
@@ -662,7 +670,7 @@ R.assoc('c', 3, {a: 1, b: 2}); //=> {a: 1, b: 2, c: 3}
 _Добавлено в версии v0.8.0_
 
 Создает поверхностную копию объекта, устанавливая или перезаписывая узлы, которые необходимы для создания указанного пути и вставляя указанное значение в конце того пути. __Обратите внимание__, что он так же копирует и выравнивает значения прототипов в новом объекте. Все значения не являющиеся примитивами копируются по ссылке.
-Смотрите также [dissocPath](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#dissocPath).
+Смотрите также [dissocPath](#dissocPath).
 
 ```javascript
 R.assocPath(['a', 'b', 'c'], 42, {a: {b: {c: 0}}}); //=> {a: {b: {c: 42}}}
@@ -691,7 +699,7 @@ _Добавлено в версии v0.2.0_
 
 Оборачивает функцию любой арности (включая нулевую) в функцию, которая принимает в себя 2 аргумента. Ни один из избыточных аргументов не будет передан в обернутую функцию.
 
-Смотрите также [nAry](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#nary), [unary](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#unary).
+Смотрите также [nAry](#nary), [unary](#unary).
 
 ```javascript
 var takesThreeArgs = function(a, b, c) {
@@ -727,7 +735,7 @@ _Добавлено в версии v0.6.0_
 
 Создает функцию привязанную к контесту. __Примечание:__ `R.bind` не предоставляет дополнительные возможности привязки аргументов `Function.prototype.bind`.
 
-Смотрите также [partial](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#partial).
+Смотрите также [partial](#partial).
 
 ```javascript
 var log = R.bind(console.log, console);
@@ -758,7 +766,7 @@ _Добавлено в версии v0.12.0_
 
 В дополнение к функциям, `R.both` также принимает любые совместимые с `fantasy-land` аппликативные функторы.
 
-Смотрите также [and](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#and).
+Смотрите также [and](#and).
 
 ```javascript
 var gt10 = R.gt(R.__, 10)
@@ -788,7 +796,7 @@ f(30); //=> false
 _Добавлено в версии v0.9.0_
 
 вернет результат вызова первого аргумента и оставшиеся аргументы. Иногда это полезно в качестве конверсионной функции для `R.converge`: первая ветка может образовать функцию, в то время как остальные ветви образуют значения, которые будут переданы в ту образованную функцию в качестве аргументов.
-Смотрите также [apply](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#apply).
+Смотрите также [apply](#apply).
 
 ```javascript
 R.call(R.add, 1, 2); //=> 3
@@ -828,7 +836,7 @@ _Добавлено в версии v0.3.0_
 
 Выполняется метод `chain` второго аргумента(если он имеется), согласно [FantasyLand Chain спецификации](https://github.com/fantasyland/fantasy-land#chain).
 
-Смотрите также [apply](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#apply).
+Смотрите также [apply](#apply).
 
 ```javascript
 var duplicate = n => [n, n];
@@ -900,6 +908,64 @@ objects[0] === objectsClone[0]; //=> false
 **[⬆ вверх](#Документация)**
 
 
+## comparator
+### `[Function]`
+
+`((a, b) → Boolean) → ((a, b) → Number)`
+
+#### Параметры:
+|||
+:---|:---|
+| pred | Функция предикат второго уровня, которая возвращает true, если первый аргумент меньше второго, иначе false |
+| вернет __Function__ | Функция:: `a - > b - > Int`, которая возвращает `-1` Если `a < b`, `1` Если `b < a`, в противном случае `0` |
+
+Добавлено в версии __v0.1.0__
+
+Создает функцию сравнения, которая сообщает, является ли первый элемент меньше второго.
+
+```javascript
+var byAge = R.comparator((a, b) => a.age < b.age);
+var people = [
+  // ...
+];
+var peopleByIncreasingAge = R.sort(byAge, people);
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20byAge%20%3D%20R.comparator%28%28a%2C%20b%29%20%3D%3E%20a.age%20%3C%20b.age%29%3B%0Avar%20people%20%3D%20%5B%0A%20%20%2F%2F%20...%0A%5D%3B%0Avar%20peopleByIncreasingAge%20%3D%20R.sort%28byAge%2C%20people%29%3B)
+
+**[⬆ вверх](#Документация)**
+
+
+
+## complement
+### `[Logic]`
+
+`(*… → *) → (*… → Boolean)`
+
+#### Параметры:
+||
+:---|
+| f | 
+| вернет __Function__ |
+
+Добавлено в версии __v0.12.0__
+
+Принимает функцию `f` и возвращает функцию `g` такую, что если она вызывается с теми же аргументами что и `f`, когда `f` возвращает `true`, `g` возвращает `false`, а когда `f` возвращает значение `false`, `g` возвращает `true`.
+
+R.complement может быть применено к любому функтору.
+
+Смотрите также [not](#not).
+
+```javascript
+var isNotNil = R.complement(R.isNil);
+isNil(null); //=> true
+isNotNil(null); //=> false
+isNil(7); //=> false
+isNotNil(7); //=> true
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20isNotNil%20%3D%20R.complement%28R.isNil%29%3B%0AisNil%28null%29%3B%20%2F%2F%3D%3E%20true%0AisNotNil%28null%29%3B%20%2F%2F%3D%3E%20false%0AisNil%287%29%3B%20%2F%2F%3D%3E%20false%0AisNotNil%287%29%3B%20%2F%2F%3D%3E%20true)
+
+**[⬆ вверх](#Документация)**
+
 
 ## compose
 ### `[Function]`
@@ -918,7 +984,7 @@ _Добавлено в версии v0.1.0_
 
 __Зауважте:__ Результат метода `compose` не каррируется автоматически.
 
-Смотрите также [pipe](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#pipe).
+Смотрите также [pipe](#pipe).
 
 ```javascript
 var classyGreeting = (firstName, lastName) => "The name's " + lastName + ", " + firstName + " " + lastName
@@ -931,6 +997,263 @@ R.compose(Math.abs, R.add(1), R.multiply(2))(-4) //=> 7
 
 **[⬆ вверх](#Документация)**
 
+
+## composeK
+### `[Function]`
+
+`Chain m => ((y → m z), (x → m y), …, (a → m b)) → (a → m z)`
+
+#### Параметры:
+|||
+:---|:---|
+| ...functions | Функции, которые должны быть скомпозированны. |
+| вернет __function__ | |
+
+_Добавлено в версии v0.16.0_
+
+Возвращает композицию Kleisli справа налево предоставленных функций, каждая из которых должна возвращать значение типа, поддерживаемого `Chain`.
+
+R.composeK(h, g, f) эквивалент R.compose(R.chain(h), R.chain(g), f).
+
+Смотрите также [pipeK](#pipeK).
+
+```javascript
+//  get :: String -> Object -> Maybe *
+ var get = R.curry((propName, obj) => Maybe(obj[propName]))
+
+ //  getStateCode :: Maybe String -> Maybe String
+ var getStateCode = R.composeK(
+   R.compose(Maybe.of, R.toUpper),
+   get('state'),
+   get('address'),
+   get('user'),
+ );
+ getStateCode({"user":{"address":{"state":"ny"}}}); //=> Maybe.Just("NY")
+ getStateCode({}); //=> Maybe.Nothing()
+```
+Попробуйте в [REPL](http://ramdajs.com/repl/?v=0.24.1#?var%20classyGreeting%20%3D%20%28firstName%2C%20lastName%29%20%3D%3E%20%22The%20name%27s%20%22%20%2B%20lastName%20%2B%20%22%2C%20%22%20%2B%20firstName%20%2B%20%22%20%22%20%2B%20lastName%0Avar%20yellGreeting%20%3D%20R.compose%28R.toUpper%2C%20classyGreeting%29%3B%0AyellGreeting%28%27James%27%2C%20%27Bond%27%29%3B%20%2F%2F%3D%3E%20%22THE%20NAME%27S%20BOND%2C%20JAMES%20BOND%22%0A%0AR.compose%28Math.abs%2C%20R.add%281%29%2C%20R.multiply%282%29%29%28-4%29%20%2F%2F%3D%3E%207)
+
+**[⬆ вверх](#Документация)**
+
+
+## composeP
+### `[Function]`
+
+`((y → Promise z), (x → Promise y), …, (a → Promise b)) → (a → Promise z)`
+
+#### Параметры:
+|||
+:---|:---|
+| ...functions | Функции, которые должны быть скомпозированны. |
+| вернет __function__ | |
+
+_Добавлено в версии v0.10.0_
+
+Выполняет композицию справа налево одной или нескольких функций, возвращающих `Promise`. Крайняя правая функция может иметь любую арность, остальные функции должны быть унарными.
+
+Смотрите также [pipeP](#pipeP).
+
+```javascript
+var db = {
+  users: {
+    JOE: {
+      name: 'Joe',
+      followers: ['STEVE', 'SUZY']
+    }
+  }
+}
+
+// We'll pretend to do a db lookup which returns a promise
+var lookupUser = (userId) => Promise.resolve(db.users[userId])
+var lookupFollowers = (user) => Promise.resolve(user.followers)
+lookupUser('JOE').then(lookupFollowers)
+
+//  followersForUser :: String -> Promise [UserId]
+var followersForUser = R.composeP(lookupFollowers, lookupUser);
+followersForUser('JOE').then(followers => console.log('Followers:', followers))
+// Followers: ["STEVE","SUZY"]
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20db%20%3D%20%7B%0A%20%20users%3A%20%7B%0A%20%20%20%20JOE%3A%20%7B%0A%20%20%20%20%20%20name%3A%20%27Joe%27%2C%0A%20%20%20%20%20%20followers%3A%20%5B%27STEVE%27%2C%20%27SUZY%27%5D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0A%2F%2F%20We%27ll%20pretend%20to%20do%20a%20db%20lookup%20which%20returns%20a%20promise%0Avar%20lookupUser%20%3D%20%28userId%29%20%3D%3E%20Promise.resolve%28db.users%5BuserId%5D%29%0Avar%20lookupFollowers%20%3D%20%28user%29%20%3D%3E%20Promise.resolve%28user.followers%29%0AlookupUser%28%27JOE%27%29.then%28lookupFollowers%29%0A%0A%2F%2F%20%20followersForUser%20%3A%3A%20String%20-%3E%20Promise%20%5BUserId%5D%0Avar%20followersForUser%20%3D%20R.composeP%28lookupFollowers%2C%20lookupUser%29%3B%0AfollowersForUser%28%27JOE%27%29.then%28followers%20%3D%3E%20console.log%28%27Followers%3A%27%2C%20followers%29%29%0A%2F%2F%20Followers%3A%20%5B%22STEVE%22%2C%22SUZY%22%5D)
+
+**[⬆ вверх](#Документация)**
+
+
+
+## concat
+### `[List]`
+
+`[a] → [a] → [a]`
+`String → String → String`
+
+#### Параметры:
+|||
+:---|:---|
+| firstList | Первый список. |
+| secondList | Второй список. |
+| вернет __Array__ | Список, состоящий из элементов `firstList` и элементов `secondList`. |
+
+_Добавлено в версии v0.1.0_
+
+Возвращает результат конкатенации данных списков или строк.
+
+__Примечание:__ R.concat ожидает, что оба аргумента будут одного типа, в отличие от метода Array.prototype.concat. Он выдаст ошибку, если вы конкатенируете массив с примитвом.
+
+Отправляет метод `concat` первого аргумента, если он присутствует.  Может также объединять два члена полугруппы совместимой с [fantasy-land](https://github.com/fantasyland/fantasy-land#semigroup).
+
+```javascript
+R.concat('ABC', 'DEF'); // 'ABCDEF'
+R.concat([4, 5, 6], [1, 2, 3]); //=> [4, 5, 6, 1, 2, 3]
+R.concat([], []); //=> []
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20db%20%3D%20%7B%0A%20%20users%3A%20%7B%0A%20%20%20%20JOE%3A%20%7B%0A%20%20%20%20%20%20name%3A%20%27Joe%27%2C%0A%20%20%20%20%20%20followers%3A%20%5B%27STEVE%27%2C%20%27SUZY%27%5D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0A%2F%2F%20We%27ll%20pretend%20to%20do%20a%20db%20lookup%20which%20returns%20a%20promise%0Avar%20lookupUser%20%3D%20%28userId%29%20%3D%3E%20Promise.resolve%28db.users%5BuserId%5D%29%0Avar%20lookupFollowers%20%3D%20%28user%29%20%3D%3E%20Promise.resolve%28user.followers%29%0AlookupUser%28%27JOE%27%29.then%28lookupFollowers%29%0A%0A%2F%2F%20%20followersForUser%20%3A%3A%20String%20-%3E%20Promise%20%5BUserId%5D%0Avar%20followersForUser%20%3D%20R.composeP%28lookupFollowers%2C%20lookupUser%29%3B%0AfollowersForUser%28%27JOE%27%29.then%28followers%20%3D%3E%20console.log%28%27Followers%3A%27%2C%20followers%29%29%0A%2F%2F%20Followers%3A%20%5B%22STEVE%22%2C%22SUZY%22%5D)
+
+**[⬆ вверх](#Документация)**
+
+
+## cond
+### `[Logoc]`
+
+`[[(*… → Boolean),(*… → *)]] → (*… → *)`
+
+#### Параметры:
+|||
+:---|:---|
+| pairs | Список [предикат, трансформатор] |
+| вернет __Function__ ||
+
+_Добавлено в версии v0.6.0_
+
+Возвращает функцию fn, которая инкапсулирует `if/else`, `if/else`, `... logic`. R.cond принимает список пар [предикат, трансформатор]. Все аргументы `fn` применяются к каждому из предикатов по очереди, пока не вернется «истинное» значение, после чего `fn` возвращает результат применения своих аргументов к соответствующему трансформатору. Если ни один из предикатов не совпадает, `fn` возвращает `undefined`.
+
+Отправляет метод `concat` первого аргумента, если он присутствует.  Может также объединять два члена полугруппы совместимой с [fantasy-land](https://github.com/fantasyland/fantasy-land#semigroup).
+
+```javascript
+var fn = R.cond([
+  [R.equals(0),   R.always('water freezes at 0°C')],
+  [R.equals(100), R.always('water boils at 100°C')],
+  [R.T,           temp => 'nothing special happens at ' + temp + '°C']
+]);
+fn(0); //=> 'water freezes at 0°C'
+fn(50); //=> 'nothing special happens at 50°C'
+fn(100); //=> 'water boils at 100°C'
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20fn%20%3D%20R.cond%28%5B%0A%20%20%5BR.equals%280%29%2C%20%20%20R.always%28%27water%20freezes%20at%200%C2%B0C%27%29%5D%2C%0A%20%20%5BR.equals%28100%29%2C%20R.always%28%27water%20boils%20at%20100%C2%B0C%27%29%5D%2C%0A%20%20%5BR.T%2C%20%20%20%20%20%20%20%20%20%20%20temp%20%3D%3E%20%27nothing%20special%20happens%20at%20%27%20%2B%20temp%20%2B%20%27%C2%B0C%27%5D%0A%5D%29%3B%0Afn%280%29%3B%20%2F%2F%3D%3E%20%27water%20freezes%20at%200%C2%B0C%27%0Afn%2850%29%3B%20%2F%2F%3D%3E%20%27nothing%20special%20happens%20at%2050%C2%B0C%27%0Afn%28100%29%3B%20%2F%2F%3D%3E%20%27water%20boils%20at%20100%C2%B0C%27)
+
+**[⬆ вверх](#Документация)**
+
+
+## construct
+### `[Fnction]`
+
+`(* → {*}) → (* → {*})`
+
+#### Параметры:
+|||
+:---|:---|
+| fn | Функция конструктор для обертывания. |
+| вернет __Function__ | Каррированная функция конструктор.|
+
+_Добавлено в версии v0.1.0_
+
+Оборачивает функцию-конструктор внутри каррированной функции, которая может быть вызвана с теми же аргументами и возвращает один и тот же тип.
+
+Смотрите также [invoker](#invoker).
+
+```javascript
+// Constructor function
+function Animal(kind) {
+  this.kind = kind;
+};
+Animal.prototype.sighting = function() {
+  return "It's a " + this.kind + "!";
+}
+
+var AnimalConstructor = R.construct(Animal)
+
+// Notice we no longer need the 'new' keyword:
+AnimalConstructor('Pig'); //=> {"kind": "Pig", "sighting": function (){...}};
+
+var animalTypes = ["Lion", "Tiger", "Bear"];
+var animalSighting = R.invoker(0, 'sighting');
+var sightNewAnimal = R.compose(animalSighting, AnimalConstructor);
+R.map(sightNewAnimal, animalTypes); //=> ["It's a Lion!", "It's a Tiger!", "It's a Bear!"]
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;%2F%2F%20Constructor%20function%0Afunction%20Animal%28kind%29%20%7B%0A%20%20this.kind%20%3D%20kind%3B%0A%7D%3B%0AAnimal.prototype.sighting%20%3D%20function%28%29%20%7B%0A%20%20return%20%22It%27s%20a%20%22%20%2B%20this.kind%20%2B%20%22%21%22%3B%0A%7D%0A%0Avar%20AnimalConstructor%20%3D%20R.construct%28Animal%29%0A%0A%2F%2F%20Notice%20we%20no%20longer%20need%20the%20%27new%27%20keyword%3A%0AAnimalConstructor%28%27Pig%27%29%3B%20%2F%2F%3D%3E%20%7B%22kind%22%3A%20%22Pig%22%2C%20%22sighting%22%3A%20function%20%28%29%7B...%7D%7D%3B%0A%0Avar%20animalTypes%20%3D%20%5B%22Lion%22%2C%20%22Tiger%22%2C%20%22Bear%22%5D%3B%0Avar%20animalSighting%20%3D%20R.invoker%280%2C%20%27sighting%27%29%3B%0Avar%20sightNewAnimal%20%3D%20R.compose%28animalSighting%2C%20AnimalConstructor%29%3B%0AR.map%28sightNewAnimal%2C%20animalTypes%29%3B%20%2F%2F%3D%3E%20%5B%22It%27s%20a%20Lion%21%22%2C%20%22It%27s%20a%20Tiger%21%22%2C%20%22It%27s%20a%20Bear%21%22%5D)
+
+**[⬆ вверх](#Документация)**
+
+
+## constructN
+### `[Fnction]`
+
+`Number → (* → {*}) → (* → {*})`
+
+#### Параметры:
+|||
+:---|:---|
+| n | Арность функции-конструктора. |
+| fn | Функция конструктор для обертывания. |
+| вернет __Function__ | Каррированная функция конструктор.|
+
+_Добавлено в версии v0.4.0_
+
+Оборачивает функцию-конструктор внутри каррированной функции, которая может быть вызвана с теми же аргументами и возвращает один и тот же тип. Арность функции возвращается, чтобы разрешить использование функций с переменным числом аргументов конструктора.
+
+Смотрите также [invoker](#invoker).
+
+```javascript
+// Функция конструктор с переменным числом аргументов
+function Salad() {
+  this.ingredients = arguments;
+}
+
+Salad.prototype.recipe = function() {
+  var instructions = R.map(ingredient => 'Add a dollop of ' + ingredient, this.ingredients);
+  return R.join('\n', instructions);
+};
+
+var ThreeLayerSalad = R.constructN(3, Salad);
+
+// Обратите внимание, что нам больше не нужно ключевое слово "new", и конструктор каррирован для 3 аргументов.
+var salad = ThreeLayerSalad('Mayonnaise')('Potato Chips')('Ketchup');
+
+console.log(salad.recipe());
+// Add a dollop of Mayonnaise
+// Add a dollop of Potato Chips
+// Add a dollop of Ketchup
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;%2F%2F%20Variadic%20Constructor%20function%0Afunction%20Salad%28%29%20%7B%0A%20%20this.ingredients%20%3D%20arguments%3B%0A%7D%0A%0ASalad.prototype.recipe%20%3D%20function%28%29%20%7B%0A%20%20var%20instructions%20%3D%20R.map%28ingredient%20%3D%3E%20%27Add%20a%20dollop%20of%20%27%20%2B%20ingredient%2C%20this.ingredients%29%3B%0A%20%20return%20R.join%28%27%5Cn%27%2C%20instructions%29%3B%0A%7D%3B%0A%0Avar%20ThreeLayerSalad%20%3D%20R.constructN%283%2C%20Salad%29%3B%0A%0A%2F%2F%20Notice%20we%20no%20longer%20need%20the%20%27new%27%20keyword%2C%20and%20the%20constructor%20is%20curried%20for%203%20arguments.%0Avar%20salad%20%3D%20ThreeLayerSalad%28%27Mayonnaise%27%29%28%27Potato%20Chips%27%29%28%27Ketchup%27%29%3B%0A%0Aconsole.log%28salad.recipe%28%29%29%3B%0A%2F%2F%20Add%20a%20dollop%20of%20Mayonnaise%0A%2F%2F%20Add%20a%20dollop%20of%20Potato%20Chips%0A%2F%2F%20Add%20a%20dollop%20of%20Ketchup)
+
+**[⬆ вверх](#Документация)**
+
+
+## contains
+### `[List]`
+
+`a → [a] → Boolean`
+
+#### Параметры:
+|||
+:---|:---|
+| a | Элемент для сравнения. |
+| list | Массив для рассмотрения. |
+| вернет __Boolean__ | `true`, если эквивалентный элемент находится в списке, в противном случае - `false`. |
+
+_Добавлено в версии v0.1.0_
+
+Возвращает `true`, если указанное значение равно, с точки зрения R.equals, по меньшей мере одному элементу данного списка, `false` в противном случае.
+
+Смотрите также [any](#any).
+
+```javascript
+R.contains(3, [1, 2, 3]); //=> true
+R.contains(4, [1, 2, 3]); //=> false
+R.contains({ name: 'Fred' }, [{ name: 'Fred' }]); //=> true
+R.contains([42], [[42]]); //=> true
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;R.contains%283%2C%20%5B1%2C%202%2C%203%5D%29%3B%20%2F%2F%3D%3E%20true%0AR.contains%284%2C%20%5B1%2C%202%2C%203%5D%29%3B%20%2F%2F%3D%3E%20false%0AR.contains%28%7B%20name%3A%20%27Fred%27%20%7D%2C%20%5B%7B%20name%3A%20%27Fred%27%20%7D%5D%29%3B%20%2F%2F%3D%3E%20true%0AR.contains%28%5B42%5D%2C%20%5B%5B42%5D%5D%29%3B%20%2F%2F%3D%3E%20true)
+
+**[⬆ вверх](#Документация)**
 
 
 ## converge
@@ -949,7 +1272,7 @@ _Добавлено в версии v0.4.2_
 
 Принимает функцию преобразователь и список функций и вернет новую функцию. При вызове эта новая Функция применяется к некоторым аргументам, каждая переданная Функция применяется к соответствующим аргументам. Результат каждой примененной функции передается как аргумент функции преобразователя для создания возвращаемого значение.
 
-Смотрите также [useWith](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#usewith).
+Смотрите также [useWith](#usewith).
 
 ```javascript
 var average = R.converge(R.divide, [R.sum, R.length])
@@ -978,7 +1301,7 @@ _Добавлено в версии v0.9.0_
 
 Зменшує свій аргумент.
 
-Смотрите также [inc](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#inc).
+Смотрите также [inc](#inc).
 
 ```javascript
 R.dec(42); //=> 41
@@ -1035,7 +1358,7 @@ _Добавлено в версии v0.23.0_
 
 Створює низхідну функцію порівняння з функції, яка вернет значення, яке, в подальшому, може бути порівняне з `<` та `>`.
 
-Смотрите также [ascend](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#ascend).
+Смотрите также [ascend](#ascend).
 
 ```javascript
 var byAge = R.descend(R.prop('age'));
@@ -1065,7 +1388,7 @@ _Добавлено в версии v0.1.0_
 
 Знаходить набір(неповторюваних) елементів з першого списку, яких немає у другому списку. Об'єкти та масиви порівнюються з точки зору рівності значень, а не рівності посиланнь.
 
-Смотрите также [differenceWith](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#differencewidth), [symmetricDifference](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#symmetricdifference), [symmetricDifferenceWith](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#symmetricdifferencewith), [without](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#without).
+Смотрите также [differenceWith](#differencewidth), [symmetricDifference](#symmetricdifference), [symmetricDifferenceWith](#symmetricdifferencewith), [without](#without).
 
 ```javascript
 R.difference([1,2,3,4], [7,6,5,4,3]); //=> [1,2]
@@ -1094,7 +1417,7 @@ _Добавлено в версии v0.1.0_
 
 Знаходить набір елементів першого списку, яких немає у другому списку. Повторюваність елементів виявляється згідно зі значенням, яке вернетться після застосування наданого предикату щодо обох списків.
 
-Смотрите также [difference](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#difference), [symmetricDifference](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#symmetricdifference), [symmetricDifferenceWith](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#symmetricdifferencewith).
+Смотрите также [difference](#difference), [symmetricDifference](#symmetricdifference), [symmetricDifferenceWith](#symmetricdifferencewith).
 
 ```javascript
 var cmp = (x, y) => x.a === y.a;
@@ -1123,7 +1446,7 @@ _Добавлено в версии v0.10.0_
 
 вернет об'єкт, котрий не містись зазначеної властивості `prop`.
 
-Смотрите также [assoc](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#assoc).
+Смотрите также [assoc](#assoc).
 
 ```javascript
 R.dissoc('b', {a: 1, b: 2, c: 3}); //=> {a: 1, c: 3}
@@ -1150,7 +1473,7 @@ _Добавлено в версии v0.11.0_
 
 Робить поверхневу копію об'єкту, пропускаючи властивість за вказаним шляхом. Зауважте, що це також копіює і вирівнює властивості прототипу до нового об'єкту. Всі непримітивні властивості копіюються за посиланням.
 
-Смотрите также [assocPath](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#assocpath).
+Смотрите также [assocPath](#assocpath).
 
 ```javascript
 R.dissocPath(['a', 'b', 'c'], {a: {b: {c: 42}}}); //=> {a: {b: {}}}
@@ -1176,7 +1499,7 @@ _Добавлено в версии v0.1.0_
 
 Ділить два числа. Еквівалент для `a / b`.
 
-Смотрите также [multiply](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#multiply).
+Смотрите также [multiply](#multiply).
 
 ```javascript
 R.divide(71, 100); //=> 0.71
@@ -1214,7 +1537,7 @@ _Добавлено в версии v0.1.0_
 Виконується з другим аргументом, якщо присутній.
 
 See also take, transduce, dropLast, dropWhile.
-Смотрите также [take](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#take), [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce), [dropLast](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#droplast), [dropWhile](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#dropwhile)
+Смотрите также [take](#take), [transduce](#transduce), [dropLast](#droplast), [dropWhile](#dropwhile)
 
 ```javascript
 R.drop(1, ['foo', 'bar', 'baz']); //=> ['bar', 'baz']
@@ -1245,7 +1568,7 @@ _Добавлено в версии v0.16.0_
 
 вернет список, який містить все окрім останніх `n` елементів переданого списку.
 
-Смотрите также [takeLast](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#takelast), [drop](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#drop), [dropWhile](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#dropwhile), [dropLastWhile](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#droplastwhile).
+Смотрите также [takeLast](#takelast), [drop](#drop), [dropWhile](#dropwhile), [dropLastWhile](#droplastwhile).
 
 ```javascript
 R.dropLast(1, ['foo', 'bar', 'baz']); //=> ['foo', 'bar']
@@ -1276,7 +1599,7 @@ _Добавлено в версии v0.16.0_
 
 вернет новий список, без кінцевих елементів переданого списку, які задовольняють умову переданої функції-предикату. Вона передає кожне значення зправа до переданого предикату, відсіюючи елементи допоки Функция-предикат вернет `falsy` значення. Функция-предикат застосовується до одного аргементу: (value).
 
-Смотрите также [takeLastWhile](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#takelastwhile), [addIndex](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#addindex), [drop](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#drop), [dropWhile](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#dropwhile).
+Смотрите также [takeLastWhile](#takelastwhile), [addIndex](#addindex), [drop](#drop), [dropWhile](#dropwhile).
 
 ```javascript
 var lteThree = x => x <= 3;
@@ -1307,7 +1630,7 @@ _Добавлено в версии v0.14.0_
 
 Поводиться як трансдюсер, якщо передано трансформер замість списку.
 
-Смотрите также [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce).
+Смотрите также [transduce](#transduce).
 
 ```javascript
 R.dropRepeats([1, 1, 1, 2, 3, 4, 4, 2, 2]); //=> [1, 2, 3, 4, 2]
@@ -1336,7 +1659,7 @@ _Добавлено в версии v0.14.0
 
 Поводить себе як трансдюсер, у випадку, якщо замість списку передано трансформер.
 
-Смотрите также [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce).
+Смотрите также [transduce](#transduce).
 
 ```javascript
 var l = [1, -1, 1, 3, 4, -4, -4, -5, 5, 3, 3];
@@ -1368,7 +1691,7 @@ _Добавлено в версии v0.9.0_
 
 Поводить себе як трансдюсер, якщо на місці списку передано трансформер.
 
-Смотрите также [takeWhile](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#takewhile), [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce), [addIndex](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#addindex).
+Смотрите также [takeWhile](#takewhile), [transduce](#transduce), [addIndex](#addindex).
 
 ```javascript
 var lteTwo = x => x <= 2;
@@ -1469,7 +1792,7 @@ Ramda надає зручну реалізацію `map` для `Array` та `Ob
 
 Також сприймає функції як функтори і зробить з них композицію.
 
-Смотрите также [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce), [addIndex](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#addindex).
+Смотрите также [transduce](#transduce), [addIndex](#addindex).
 
 ```javascript
 var double = x => x * 2;
@@ -1501,7 +1824,7 @@ _Добавлено в версии v0.12.0_
 
 Застосовує до кожного методу другого аргументу, якщо він присутній.
 
-Смотрите также [all](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#all), [any](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#any).
+Смотрите также [all](#all), [any](#any).
 
 ```javascript
 var isEven = n => n % 2 === 0;
@@ -1555,7 +1878,7 @@ _Добавлено в версии v0.10.0_
 
 Приймає функцію `f` та список аргументів `args` і вернет функцію(скажімо `g`). Коли застосована, Функция `g` вернет результат застосуання функції `f` щодо аргументів `args`, котрі були передані зпочатку, і слідом вернет аргументи передані у функцію `g`.
 
-Смотрите также [partialRight](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#partialright).
+Смотрите также [partialRight](#partialright).
 
 ```javascript
 var multiply2 = (a, b) => a * b;
@@ -1590,7 +1913,7 @@ _Добавлено в версии v0.2.0_
 
 Знаходить значення за вказаним шляхом.
 
-Смотрите также [path](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#prop).
+Смотрите также [path](#prop).
 
 ```javascript
 R.path(['a', 'b'], {a: {b: 2}}); //=> 2
@@ -1647,7 +1970,7 @@ _Добавлено в версии v0.1.0_
 
 __Зауважте:__ Результат методу `pipe` не каррується автоматично.
 
-Смотрите также [compose](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#compose).
+Смотрите также [compose](#compose).
 
 ```javascript
 var f = R.pipe(Math.pow, R.negate, R.inc);
@@ -1675,7 +1998,7 @@ _Добавлено в версии v0.1.0_
 
 вернет новий список, в якому знаходяться елементи переданого в якості параметру списку, та на початку елемент переданий в якості аргументу.
 
-Смотрите также [append](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#append).
+Смотрите также [append](#append).
 
 ```javascript
 R.prepend('fee', ['fi', 'fo', 'fum']); //=> ['fee', 'fi', 'fo', 'fum']
@@ -1701,7 +2024,7 @@ _Добавлено в версии v0.1.0_
 
 вернет функцію, яка, коли в неї передано об'єкт, вернет відповідну властивість цього об'єкту, якщо вона існує.
 
-Смотрите также [path](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#path).
+Смотрите также [path](#path).
 
 ```javascript
 R.prop('x', {x: 100}); //=> 100
@@ -1737,7 +2060,7 @@ _Добавлено в версии v0.1.0_
 
 Якщо присутній третій аргумент він також передається у метод `reduce`. При цьому, залежить від користувача, що робити з `R.reduced`, оскільки це не реалізовано у `reduce`.
 
-Смотрите также [reduced](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#reduced), [addIndex](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#addindex), [reduceRight](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#reduceright).
+Смотрите также [reduced](#reduced), [addIndex](#addindex), [reduceRight](#reduceright).
 
 ```javascript
 R.reduce(R.subtract, 0, [1, 2, 3, 4]) // => ((((0 - 1) - 2) - 3) - 4) = -10
@@ -1773,7 +2096,7 @@ _Добавлено в версии v0.15.0_
 
 **Зауважте:** ця оптимізація не доступна для функцій не перечислених вище. Наприклад, наразі немає підтримки `reduceRight`.
 
-Смотрите также [reduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#reduce), [transduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#transduce).
+Смотрите также [reduce](#reduce), [transduce](#transduce).
 
 ```javascript
 R.reduce(
@@ -1809,7 +2132,7 @@ _Добавлено в версии v0.1.0_
 
 **Зауважте:** `R.reduceRight` не пропускає видалені чи нерозподілені індекси(розріджені масиви), на відміну від вбудованого в javascript методу `Array.prototype.reduceRight`. Більш детальну інформацію, щодо цієї поведінки дивіться тут: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description)
 
-Смотрите также [reduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#reduce), [addIndex](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#addindex).
+Смотрите также [reduce](#reduce), [addIndex](#addindex).
 
 ```javascript
 R.reduceRight(R.subtract, 0, [1, 2, 3, 4]) // => (1 - (2 - (3 - (4 - 0)))) = -2
@@ -1846,7 +2169,7 @@ _Добавлено в версии v0.16.0_
 
 вернет результат "оновлення" структури даних після заміни її конкретної частини, визначеної лінзою, на нове надане значення.
 
-Смотрите также [prop](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#prop), [lensIndex](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#lensindex), [lensProp](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#lensprop).
+Смотрите также [prop](#prop), [lensIndex](#lensindex), [lensProp](#lensprop).
 
 ```javascript
 var xLens = R.lensProp('x');
@@ -1983,7 +2306,7 @@ _Добавлено в версии v0.1.0_
 
 Віднімає свій другий аргумент від першого.
 
-Смотрите также [add](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#add).
+Смотрите также [add](#add).
 
 ```javascript
 R.subtract(10, 8); //=> 2
@@ -2026,7 +2349,7 @@ _Добавлено в версии v0.12.0_
 
 Ітерації виконуються за допомогою `R.reduce` після ініціалізації перетворювача(transducer).
 
-Смотрите также [reduce](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#reduce), [reduced](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#reduced), [into](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#into).
+Смотрите также [reduce](#reduce), [reduced](#reduced), [into](#into).
 
 ```javascript
 var numbers = [1, 2, 3, 4];
@@ -2056,7 +2379,7 @@ _Добавлено в версии v0.14.0_
 
 вернет нову копію масиву з елементом(на вказаному за індексом місці) заміненим на передане значення.
 
-Смотрите также [adjust](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#adjust).
+Смотрите также [adjust](#adjust).
 
 ```javascript
 R.update(1, 11, [0, 1, 2]);     //=> [0, 11, 2]
@@ -2085,7 +2408,7 @@ _Добавлено в версии v0.1.0_
 
 Якщо до поверненої функції передано більше аргуменів ніж до функцій-трансформерів, то ті аргументи передаються напряму до функції `fn` в якості додаткових аргументів. Якщо ви очікуєте на додаткові аргументи, які не потрібно перетворювати, то не дивлячись на те, що ви можете їх проігнорувати, краще передати сутність функції, для того, щоб нова Функция відображала правильну арність.
 
-Смотрите также [converge](https://github.com/Guck111/ramda/blob/master/DOCUMENTATION.md#converge).
+Смотрите также [converge](#converge).
 
 ```javascript
 R.useWith(Math.pow, [R.identity, R.identity])(3, 4); //=> 81
