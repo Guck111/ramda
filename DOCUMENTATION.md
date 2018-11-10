@@ -47,8 +47,8 @@
 - [contains](#contains) `List`
 - [converge](#converge) `Function`
 - [countBy](#countBy) `Relation`
-- [carry](#carry) `Function`
-- [carryN](#carryN) `Function`
+- [curry](#carry) `Function`
+- [curryN](#carryN) `Function`
 
 **[⬆ вверх](#Документация)**
 
