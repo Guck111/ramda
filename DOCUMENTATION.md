@@ -70,6 +70,9 @@
 
 **[⬆ вверх](#Документация)**
 
+## E
+- [endsWith](#endsWith) `List`
+
 ## J
 - [juxt](#) ``
 
@@ -83,69 +86,6 @@
 
 ## M
 - [map](#map) `List`
-
-**[⬆ вверх](#Документация)**
-
-## N
-- [nAry](#) ``
-- [none](#none) `List`
-
-**[⬆ вверх](#Документация)**
-
-## O
-- [once](#once) `Function`
-
-**[⬆ вверх](#Документация)**
-
-## P
-- [partial](#partial) `Function`
-- [path](#path) `Object`
-- [pathEq](#patheq) `Relation`
-- [pipe](#pipe) `Function`
-- [prepend](#prepend) `List`
-
-**[⬆ вверх](#Документация)**
-
-## R
-- [reduce](#reduce) `List`
-- [reduced](#reduced) `List`
-- [reduceRight](#reduceright) `List`
-
-**[⬆ вверх](#Документация)**
-
-## S
-- [set](#set) `Object`
-- [sort](#sort) `List`
-- [sortBy](#sortby) `Relation`
-- [sortWith](#sortwith) `Relation`
-- [subtract](#subtract) `Math`
-
-**[⬆ вверх](#Документация)**
-
-## T
-- [transduce](#transduce) `List`
-
-**[⬆ вверх](#Документация)**
-
-## U
-- [unary](#) ``
-- [update](#update) `List`
-- [useWith](#usewith) `Function`
-
-**[⬆ вверх](#Документация)**
-
-## X
-- [xprod](#xprod) `List`
-
-**[⬆ вверх](#Документация)**
-
-## Z
-- [zip](#zip) `List`
-- [zipObj](#zipobj) `List`
-- [zipWith](#zipwith) `List`
-
-**[⬆ вверх](#Документация)**
-
 
 ________
 
@@ -1846,6 +1786,32 @@ R.dropWhile(x => x !== 'd' , 'Ramda'); //=> 'da'
 **[⬆ вверх](#Документация)**
 
 
+## endsWith
+### `[List]`
+
+`[a] → Boolean`
+`String → Boolean`
+
+#### Параметры:
+|||
+:---|:---|
+| suffix |
+| list | 
+| вернет __Boolean__ |
+
+_Добавлено в версии v0.24.0_
+
+Проверит заканчивается ли список `list`, предоставленными значениями.
+
+```javascript
+R.endsWith('c', 'abc')                //=> true
+R.endsWith('b', 'abc')                //=> false
+R.endsWith(['c'], ['a', 'b', 'c'])    //=> true
+R.endsWith(['b'], ['a', 'b', 'c'])    //=> false
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;R.endsWith%28%27c%27%2C%20%27abc%27%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%3D%3E%20true%0AR.endsWith%28%27b%27%2C%20%27abc%27%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%3D%3E%20false%0AR.endsWith%28%5B%27c%27%5D%2C%20%5B%27a%27%2C%20%27b%27%2C%20%27c%27%5D%29%20%20%20%20%2F%2F%3D%3E%20true%0AR.endsWith%28%5B%27b%27%5D%2C%20%5B%27a%27%2C%20%27b%27%2C%20%27c%27%5D%29%20%20%20%20%2F%2F%3D%3E%20false)
+
+**[⬆ вверх](#Документация)**
 
 ## identity
 ### `[Function]`
