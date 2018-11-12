@@ -1793,8 +1793,8 @@ R.dropWhile(x => x !== 'd' , 'Ramda'); //=> 'da'
 `String → Boolean`
 
 #### Параметры:
-|||
-:---|:---|
+||
+:---|
 | suffix |
 | list | 
 | вернет __Boolean__ |
