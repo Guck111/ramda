@@ -75,6 +75,9 @@
 - [empty](#empty) `Function`
 - [endsWith](#endsWith) `List`
 - [eqBy](#eqBy) `Relation`
+- [eqProps](#eqProps) `Object`
+- [equals](#equals) `Relation`
+- [evolve](#evolve) `Object`
 
 ## J
 - [juxt](#) ``
@@ -1894,6 +1897,95 @@ _Добавлено в версии v0.18.0_
 R.eqBy(Math.abs, 5, -5); //=> true
 ```
 Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;R.eqBy%28Math.abs%2C%205%2C%20-5%29%3B%20%2F%2F%3D%3E%20true)
+
+**[⬆ вверх](#Документация)**
+
+## eqProps
+### `[Object]`
+
+`k → {k: v} → {k: v} → Boolean`
+
+#### Параметры:
+|||
+:---|:---|
+| props | Имя свойства для сравнения |
+| obj1 | |
+| obj2 | |
+| вернет __Boolean__ ||
+
+_Добавлено в версии v0.1.0_
+
+Проверяет, имеют объекты одинаковое значение, по логике `R.equals` для указанного свойства. Полезен как каррированный предикат.
+
+```javascript
+var o1 = { a: 1, b: 2, c: 3, d: 4 };
+var o2 = { a: 10, b: 20, c: 3, d: 40 };
+R.eqProps('a', o1, o2); //=> false
+R.eqProps('c', o1, o2); //=> true
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20o1%20%3D%20%7B%20a%3A%201%2C%20b%3A%202%2C%20c%3A%203%2C%20d%3A%204%20%7D%3B%0Avar%20o2%20%3D%20%7B%20a%3A%2010%2C%20b%3A%2020%2C%20c%3A%203%2C%20d%3A%2040%20%7D%3B%0AR.eqProps%28%27a%27%2C%20o1%2C%20o2%29%3B%20%2F%2F%3D%3E%20false%0AR.eqProps%28%27c%27%2C%20o1%2C%20o2%29%3B%20%2F%2F%3D%3E%20true)
+
+**[⬆ вверх](#Документация)**
+
+## equals
+### `[Relation]`
+
+`a → b → Boolean`
+
+#### Параметры:
+||
+:---|
+| a |
+| b |
+| вернет __Boolean__ |
+
+_Добавлено в версии v0.15.0_
+
+Вернет `true`, если аргументы эквивалентны, иначе `false`. Обрабатывает циклические структуры данных.
+
+Применяется к одинаковым методам обоих аргументов, если они есть.
+
+```javascript
+R.equals(1, 1); //=> true
+R.equals(1, '1'); //=> false
+R.equals([1, 2, 3], [1, 2, 3]); //=> true
+
+var a = {}; a.v = a;
+var b = {}; b.v = b;
+R.equals(a, b); //=> true
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;R.equals%281%2C%201%29%3B%20%2F%2F%3D%3E%20true%0AR.equals%281%2C%20%271%27%29%3B%20%2F%2F%3D%3E%20false%0AR.equals%28%5B1%2C%202%2C%203%5D%2C%20%5B1%2C%202%2C%203%5D%29%3B%20%2F%2F%3D%3E%20true%0A%0Avar%20a%20%3D%20%7B%7D%3B%20a.v%20%3D%20a%3B%0Avar%20b%20%3D%20%7B%7D%3B%20b.v%20%3D%20b%3B%0AR.equals%28a%2C%20b%29%3B%20%2F%2F%3D%3E%20true)
+
+**[⬆ вверх](#Документация)**
+
+## evolve
+### `[Object]`
+
+`{k: (v → v)} → {k: v} → {k: v}`
+
+#### Параметры:
+|||
+:---|:---|
+| transformations ||
+| object | |
+| вернет __Object__ ||
+
+_Добавлено в версии v0.9.0_
+
+Объект, определяющий функции преобразования, применяемые к объекту.
+
+Функция не будет вызывана, если соответствующий ей ключ не существует в изменяемом объекте.
+
+```javascript
+var tomato  = {firstName: '  Tomato ', data: {elapsed: 100, remaining: 1400}, id:123};
+var transformations = {
+  firstName: R.trim,
+  lastName: R.trim, // Не будет вызвано.
+  data: {elapsed: R.add(1), remaining: R.add(-1)}
+};
+R.evolve(transformations, tomato); //=> {firstName: 'Tomato', data: {elapsed: 101, remaining: 1399}, id:123}
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20tomato%20%20%3D%20%7BfirstName%3A%20%27%20%20Tomato%20%27%2C%20data%3A%20%7Belapsed%3A%20100%2C%20remaining%3A%201400%7D%2C%20id%3A123%7D%3B%0Avar%20transformations%20%3D%20%7B%0A%20%20firstName%3A%20R.trim%2C%0A%20%20lastName%3A%20R.trim%2C%20%2F%2F%20Will%20not%20get%20invoked.%0A%20%20data%3A%20%7Belapsed%3A%20R.add%281%29%2C%20remaining%3A%20R.add%28-1%29%7D%0A%7D%3B%0AR.evolve%28transformations%2C%20tomato%29%3B%20%2F%2F%3D%3E%20%7BfirstName%3A%20%27Tomato%27%2C%20data%3A%20%7Belapsed%3A%20101%2C%20remaining%3A%201399%7D%2C%20id%3A123%7D)
 
 **[⬆ вверх](#Документация)**
 
