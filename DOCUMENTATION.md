@@ -79,6 +79,11 @@
 - [equals](#equals) `Relation`
 - [evolve](#evolve) `Object`
 
+## F
+- [F](#F) `Function`
+- [filter](#filter) `List`
+- [find](#find) `List`
+
 ## J
 - [juxt](#) ``
 
