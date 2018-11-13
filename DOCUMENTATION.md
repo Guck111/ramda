@@ -1989,6 +1989,7 @@ R.evolve(transformations, tomato); //=> {firstName: 'Tomato', data: {elapsed: 10
 
 **[⬆ вверх](#Документация)**
 
+
 ## identity
 ### `[Function]`
 
