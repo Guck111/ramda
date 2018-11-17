@@ -79,10 +79,18 @@
 - [equals](#equals) `Relation`
 - [evolve](#evolve) `Object`
 
-## _F
+## F.
 - [F](#F) `Function`
 - [filter](#filter) `List`
 - [find](#find) `List`
+- [findIndex](#findIndex) `List`
+- [findLast](#findLast) `List`
+- [findLastIndex](#findLastIndex) `List`
+- [flatten](#flatten) `List`
+- [flip](#flip) `Function`
+- [forEach](#forEach) `List`
+- [forEachObjIndexed](#forEachObjIndexed) `Object`
+- [fromPairs](#fromPairs) `List`
 
 ## J
 - [juxt](#) ``
@@ -2066,7 +2074,7 @@ R.filter(isEven, '689'); //=> ["6", "8"]
 
 _Добавлено в версии v0.1.0_
 
-Возвращает первый элемент списка, который соответствует предикату, или `undefined`, если элемент не совпадает.
+Возвращает первый элемент списка, который соответствует предикату, или `undefined`, если элемент не найден.
 
 Отправляет в метод `find` второй аргумент, если он присутствует.
 
@@ -2080,6 +2088,233 @@ R.find(R.propEq('a', 2))(xs); //=> {a: 2}
 R.find(R.propEq('a', 4))(xs); //=> undefined
 ```
 Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20xs%20%3D%20%5B%7Ba%3A%201%7D%2C%20%7Ba%3A%202%7D%2C%20%7Ba%3A%203%7D%5D%3B%0AR.find%28R.propEq%28%27a%27%2C%202%29%29%28xs%29%3B%20%2F%2F%3D%3E%20%7Ba%3A%202%7D%0AR.find%28R.propEq%28%27a%27%2C%204%29%29%28xs%29%3B%20%2F%2F%3D%3E%20undefined)
+
+**[⬆ вверх](#Документация)**
+
+## findIndex
+### `[List]`
+
+`(a → Boolean) → [a] → Number`
+
+#### Параметры:
+|||
+:---|:---|
+|fn|Функция предикат, используемая для определения подходящего элемента.|
+|list|Массив для рассмотрения|
+| вернет __Number__ | Вернет индекс элемента, если он найден, иначе `-1`. |
+
+_Добавлено в версии v0.1.1_
+
+Возвращает первый элемент списка, который соответствует предикату, или `-1`, если элемент не найден.
+
+Действует как `transducer`, если `transformer` задан в позиции списка.
+
+Смотрите также [transduce](#transduce).
+
+```javascript
+var xs = [{a: 1}, {a: 2}, {a: 3}];
+R.findIndex(R.propEq('a', 2))(xs); //=> 1
+R.findIndex(R.propEq('a', 4))(xs); //=> -1
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20xs%20%3D%20%5B%7Ba%3A%201%7D%2C%20%7Ba%3A%202%7D%2C%20%7Ba%3A%203%7D%5D%3B%0AR.findIndex%28R.propEq%28%27a%27%2C%202%29%29%28xs%29%3B%20%2F%2F%3D%3E%201%0AR.findIndex%28R.propEq%28%27a%27%2C%204%29%29%28xs%29%3B%20%2F%2F%3D%3E%20-1)
+
+**[⬆ вверх](#Документация)**
+
+## findLast
+### `[List]`
+
+`(a → Boolean) → [a] → a | undefined`
+
+#### Параметры:
+|||
+:---|:---|
+|fn|Функция предикат, используемая для определения подходящего элемента.|
+|list|Массив для рассмотрения|
+| вернет __Object__ | Вернет `Object`, если он найден, иначе `undefined`. |
+
+_Добавлено в версии v0.1.1_
+
+Возвращает последний элемент списка, в котором найдет соответствие предикату, или `undefined`, если соответствий не найдено.
+
+Действует как `transducer`, если `transformer` задан в позиции списка.
+
+Смотрите также [transduce](#transduce).
+
+```javascript
+var xs = [{a: 1, b: 0}, {a:1, b: 1}];
+R.findLast(R.propEq('a', 1))(xs); //=> {a: 1, b: 1}
+R.findLast(R.propEq('a', 4))(xs); //=> undefined
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20xs%20%3D%20%5B%7Ba%3A%201%2C%20b%3A%200%7D%2C%20%7Ba%3A1%2C%20b%3A%201%7D%5D%3B%0AR.findLast%28R.propEq%28%27a%27%2C%201%29%29%28xs%29%3B%20%2F%2F%3D%3E%20%7Ba%3A%201%2C%20b%3A%201%7D%0AR.findLast%28R.propEq%28%27a%27%2C%204%29%29%28xs%29%3B%20%2F%2F%3D%3E%20undefined)
+
+## findLastIndex
+### `[List]`
+
+`(a → Boolean) → [a] → Number`
+
+#### Параметры:
+|||
+:---|:---|
+|fn|Функция предикат, используемая для определения подходящего элемента.|
+|list|Массив для рассмотрения|
+| вернет __Number__ | Вернет индекс элемента, если он найден, иначе `-1`. |
+
+_Добавлено в версии v0.1.1_
+
+Возвращает индекс последнего, соответсвующего предикату элемента, или `-1`, если соответствий не найдено.
+
+Действует как `transducer`, если `transformer` задан в позиции списка.
+
+Смотрите также [transduce](#transduce).
+
+```javascript
+var xs = [{a: 1, b: 0}, {a:1, b: 1}];
+R.findLastIndex(R.propEq('a', 1))(xs); //=> 1
+R.findLastIndex(R.propEq('a', 4))(xs); //=> -1
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20xs%20%3D%20%5B%7Ba%3A%201%2C%20b%3A%200%7D%2C%20%7Ba%3A1%2C%20b%3A%201%7D%5D%3B%0AR.findLastIndex%28R.propEq%28%27a%27%2C%201%29%29%28xs%29%3B%20%2F%2F%3D%3E%201%0AR.findLastIndex%28R.propEq%28%27a%27%2C%204%29%29%28xs%29%3B%20%2F%2F%3D%3E%20-1)
+
+**[⬆ вверх](#Документация)**
+
+## flatten
+### `[List]`
+
+`[a] → [b]`
+
+#### Параметры:
+|||
+:---|:---|
+|list|Массив для рассмотрения|
+| вернет __Array__ | Вернет одномерный массив. |
+
+_Добавлено в версии v0.1.0_
+
+Вернет новый одномерный массив, со всеми элементами старого (включая элементы вложенных в него массивов).
+
+Смотрите также [unnest](#unnest).
+
+```javascript
+R.flatten([1, 2, [3, 4], 5, [6, [7, 8, [9, [10, 11], 12]]]]);
+//=> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;R.flatten%28%5B1%2C%202%2C%20%5B3%2C%204%5D%2C%205%2C%20%5B6%2C%20%5B7%2C%208%2C%20%5B9%2C%20%5B10%2C%2011%5D%2C%2012%5D%5D%5D%5D%29%3B%0A%2F%2F%3D%3E%20%5B1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%2C%2011%2C%2012%5D)
+
+**[⬆ вверх](#Документация)**
+
+## flip
+### `[Function]`
+
+`((a, b, c, …) → z) → (b → a → c → … → z)`
+
+#### Параметры:
+|||
+:---|:---|
+|fn|Функция вызываемая с измененным порядком первых двух аргументов|
+| вернет __*__ | Вернет результат вычислений `fh`. |
+
+_Добавлено в версии v0.1.0_
+
+Вернет такую же функцию с измененным порядком первых двух аргументов.
+
+```javascript
+var mergeThree = (a, b, c) => [].concat(a, b, c);
+
+mergeThree(1, 2, 3); //=> [1, 2, 3]
+
+R.flip(mergeThree)(1, 2, 3); //=> [2, 1, 3]
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20mergeThree%20%3D%20%28a%2C%20b%2C%20c%29%20%3D%3E%20%5B%5D.concat%28a%2C%20b%2C%20c%29%3B%0A%0AmergeThree%281%2C%202%2C%203%29%3B%20%2F%2F%3D%3E%20%5B1%2C%202%2C%203%5D%0A%0AR.flip%28mergeThree%29%281%2C%202%2C%203%29%3B%20%2F%2F%3D%3E%20%5B2%2C%201%2C%203%5D)
+
+**[⬆ вверх](#Документация)**
+
+## forEach
+### `[List]`
+
+`(a → *) → [a] → [a]`
+
+#### Параметры:
+|||
+:---|:---|
+|fn|Вызываемая функция, с одним аргументом `value` |
+|list|Итерируемый массив|
+| вернет __Array__ | Вернет оригинальный массив. |
+
+_Добавлено в версии v0.1.1_
+
+Итерируется по входящему массиву `list`, применяя функцию `fn` для каждого элемента.
+
+`fn` принимает один аргумент: (`value`)
+
+Примечание: `R.forEach` не пропускает удаленные или неназначенные индексы (разреженные массивы), в отличие от `Array.prototype.forEach`. Больше о поведении встроеного метода можно почитать тут: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Description](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Description)
+
+Так же в отличии от `Array.prototype.forEach`, `R.forEach` возвращает оригинальный массив. В некоторых библиотеках этот метод называется `each`.
+
+Отправляет в метод `forEach` второй аргумент, если он присутствует.
+
+Смотрите также [addIndex](#addIndex).
+
+```javascript
+var printXPlusFive = x => console.log(x + 5);
+R.forEach(printXPlusFive, [1, 2, 3]); //=> [1, 2, 3]
+// logs 6
+// logs 7
+// logs 8
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20printXPlusFive%20%3D%20x%20%3D%3E%20console.log%28x%20%2B%205%29%3B%0AR.forEach%28printXPlusFive%2C%20%5B1%2C%202%2C%203%5D%29%3B%20%2F%2F%3D%3E%20%5B1%2C%202%2C%203%5D%0A%2F%2F%20logs%206%0A%2F%2F%20logs%207%0A%2F%2F%20logs%208)
+
+**[⬆ вверх](#Документация)**
+
+## forEachObjIndexed
+### `[Object]`
+
+`((a, String, StrMap a) → Any) → StrMap a → StrMap a`
+
+#### Параметры:
+|||
+:---|:---|
+|fn|Вызываемая функция, принимающая три аргумента `value`, `key`, `object` |
+|obj|Итерируемый объект|
+| вернет __Object__ | Вернет оригинальный объект. |
+
+_Добавлено в версии v0.23.0_
+
+Итерируется по входящему объекту `obj`, применяя функцию `fn` для каждого `key` и `value` в `object`.
+
+`fn` принимает три аргумента: (`key`, `value`, `object`)
+
+Смотрите также [addIndex](#addIndex).
+
+```javascript
+var printKeyConcatValue = (value, key) => console.log(key + ':' + value);
+R.forEachObjIndexed(printKeyConcatValue, {x: 1, y: 2}); //=> {x: 1, y: 2}
+// logs x:1
+// logs y:2
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;var%20printKeyConcatValue%20%3D%20%28value%2C%20key%29%20%3D%3E%20console.log%28key%20%2B%20%27%3A%27%20%2B%20value%29%3B%0AR.forEachObjIndexed%28printKeyConcatValue%2C%20%7Bx%3A%201%2C%20y%3A%202%7D%29%3B%20%2F%2F%3D%3E%20%7Bx%3A%201%2C%20y%3A%202%7D%0A%2F%2F%20logs%20x%3A1%0A%2F%2F%20logs%20y%3A2)
+
+**[⬆ вверх](#Документация)**
+
+## fromPairs
+### `[List]`
+
+`[[k,v]] → {k: v}`
+
+#### Параметры:
+|||
+:---|:---|
+|pairs|Массив массивов из двух элементов которые будут `key` и `value` результирующего объекта |
+| вернет __Object__ | Вернет объект с `key` и `value` равными значениям парных массивов. |
+
+_Добавлено в версии v0.3.0_
+
+Создаст новый объект из элементов массива `pairs`. Если в нескольких парах одинаковый `key` то в объект будет добалена последняя.
+
+Смотрите также [toPairs](#toPairs), [pair](#pair).
+
+```javascript
+R.fromPairs([['a', 1], ['b', 2], ['c', 3]]); //=> {a: 1, b: 2, c: 3}
+```
+Попробуйте в [REPL](https://ramdajs.com/repl/?v=0.25.0#;R.fromPairs%28%5B%5B%27a%27%2C%201%5D%2C%20%5B%27b%27%2C%202%5D%2C%20%5B%27c%27%2C%203%5D%5D%29%3B%20%2F%2F%3D%3E%20%7Ba%3A%201%2C%20b%3A%202%2C%20c%3A%203%7D)
 
 **[⬆ вверх](#Документация)**
 
